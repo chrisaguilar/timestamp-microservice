@@ -33,4 +33,8 @@ app.get('/api/:date', (req, res) => {
 
 app.get('*', (req, res) => res.sendFile(join(__dirname, 'index.html')));
 
-app.listen(app.get('port'), () => console.log(`/timestamp listening on port ${app.get('port')}`));
+if (process.env.SINGLE) {
+    app.listen(app.get('port'), () => console.log(`/timestamp listening on ${app.get('port')}`));
+} else {
+    module.exports = app;
+}
